@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+
+    <title>注册</title>
+
+    <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.css">
+    <script type="text/javascript" src="../static/js/jquery.js"></script>
+    <script type="text/javascript" src="../static/js/bootstrap.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="container-fluid">
+        <nav class="navbar navbar-default">
+
+
+            <!-- Brand and toggle get grouped for better mobile display -->
+
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                    <img alt="Brand" class="img-responsive " src="../static/img/logo.jpg" style="height: 40px;
+	margin: -10px 0 0 0;">
+                </a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <form class="navbar-form navbar-left">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="搜索">
+                        </div>
+                        <button type="submit" class="btn btn-default">搜索</button>
+                    </form>
+                    <li><a href="#">登录</a></li>
+                    <li><a href="#">注册</a></li>
+                </ul>
+            </div>
+
+        </nav>
+    </div>
+
+    <!-- 页头结束 -->
+
+    <div style="position: fixed;z-index: -1;height: 670px;width: 70%;left: 15%;top: 10%;">
+        <img src="../static/img/homepage.jpg" class="  img-responsive">
+    </div>
+    <div class="row">
+        <div class="col-xs-3 "></div>
+        <div class="col-xs-9">
+            <div style="padding: 7%;"></div>
+            <!--表单-->
+            <form role="form"  method="post" action="/registerCheck">
+                <div class="row">
+                    <h4 class="col-xs-3">
+                        <div class="text-center">邮箱:</div>
+                    </h4>
+                    <div class="col-xs-6 " style="margin-left: -10%">
+                        <div class="col-xs-8">
+                            <input class="form-control" id="email" name="email" style="width: 80%">
+                        </div>
+                        <div class="col-xs-4" style="margin-left: -20%">
+                            <h4 id="msg" class="text-center" style="display:none;">msg</h4>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <h4 class="col-xs-3">
+                        <div class="text-center">密码:</div>
+                    </h4>
+                    <div class="col-xs-6 " style="margin-left: -10%">
+                        <div class="col-xs-8">
+                            <input type="password" class="form-control" id="password" name="password" style="width: 80%">
+                        </div>
+                        <div class="col-xs-4" style="margin-left: -20%">
+                            <h4 id="msg1" class="text-center" style="display:none;">msg</h4>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <h4 class="col-xs-3">
+                        <div class="text-center">确认密码:</div>
+                    </h4>
+                    <div class="col-xs-6 " style="margin-left: -10%">
+                        <div class="col-xs-8">
+                            <input class="form-control" type="password" id="repassword"  style="width: 80%">
+                        </div>
+                        <div class="col-xs-4" style="margin-left: -20%">
+                            <h4 id="msg2" class="text-center" style="display:none;">msg</h4>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <h4 class="col-xs-3">
+                        <div class="text-center">用户名:</div>
+                    </h4>
+                    <div class="col-xs-6 " style="margin-left: -10%">
+                        <div class="col-xs-8">
+                            <input class="form-control" id="username" name="username" style="width: 80%">
+                        </div>
+                        <div class="col-xs-4" style="margin-left: -20%">
+                            <h4 id="msg3" class="text-center" style="display:none;">msg</h4>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <button class="btn btn-default" type="submit" style="margin-left: 25%">提交</button>
+                </div>
+            </form>
+            <!--表单结束-->
+
+
+        </div>
+
+
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#email').on('input', function () {
+            var datas = {"email": $("#email").val()}
+            $.ajax({
+                type: "POST",
+                url: "/checkEmail",
+                data: JSON.stringify(datas),
+                contentType: "application/json;charset=UTF-8",
+                success: function (data) {
+                    $("#msg").text($.parseJSON(data).msg);
+                    $("#msg").css("display", "block")
+
+                }
+
+            })
+        })
+        $("#password").on('input',function () {
+            var x = $("#password").val();
+            if(x==undefined){
+                x = '';
+            }
+            var regex = /[\s]+/
+            if (  x.length < 6){
+                $("#msg1").text("至少输入6位嗷");
+                $("#msg1").css("display", "block")
+            } else {
+                if(regex.test(x)){
+                    $("#msg1").text("不能有非法字符");
+                } else {
+                    $("#msg1").text("ok");
+                    $("#msg1").css("display", "block")
+                }
+            }
+        })
+        $("#repassword").on('input',function () {
+            var x = $("#password").val()
+            var y = $("#repassword").val()
+            if(x != y){
+                $("#msg2").text("密码不匹配");
+                $("#msg2").css("display", "block")
+            }else {
+                $("#msg2").text("ok");
+            }
+        })
+
+
+    })
+</script>
+</body>
+</html>

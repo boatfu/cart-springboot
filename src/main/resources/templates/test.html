@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.css">
+    <script type="text/javascript" src="../static/js/jquery.js"></script>
+    <script type="text/javascript" src="../static/js/bootstrap.js"></script>
+    <style type="text/css">
+        #register-form{
+            border: 1px solid rgb(197, 197, 197);
+            width: 1000px;
+            margin: auto;
+            border-image: none;
+            padding: 30px;
+            border-radius: 3px;
+
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row " >
+        <form id="register-form" role="form" class="form-horizontal" method="get">
+            <div style="padding-left: 190px">
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="firstname">用户名：</label>
+                <div class="col-sm-5">
+                    <input class="form-control" id="firstname" name="firstname" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="password">密码：</label>
+                <div class="col-sm-5">
+                    <input class="form-control" id="password" name="password" type="password" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="confirm_password">确认密码：</label>
+                <div class="col-sm-5">
+                    <input class="form-control" id="confirm_password" name="confirm_password" type="password" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="email">E-Mail：</label>
+                <div class="col-sm-5">
+                    <input class="form-control" id="email" name="email" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="phone">手机号码：</label>
+                <div class="col-sm-5">
+                    <input class="form-control" id="phone" name="phone" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="tel">固定电话：</label>
+                <div class="col-sm-5">
+                    <input class="form-control" id="tel" name="tel" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="address">家庭住址：</label>
+                <div class="col-sm-5">
+                    <input class="form-control" id="address" name="address" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button type="submit" class="btn btn-primary btn-sm">注册</button>
+                    <button type="reset" class="btn btn-primary btn-sm">重置</button>
+                </div>
+            </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boat.mapper.OrderMapper">
+    <insert id="addOrder" parameterType="Order">
+      INSERT INTO ordersolo VALUES(NULL,#{name},#{email},#{price},#{number},#{total},#{info},#{status})
+    </insert>
+    <delete id="deleteOrder" parameterType="int">
+        DELETE FROM ordersolo WHERE id = #{id}
+    </delete>
+    <update id="updateOrder"  parameterType="Order">
+        UPDATE ordersolo SET name = #{name},email = #{email},price = #{price},number = #{number},total = #{total}, info = #{info},status = #{status} WHERE id = #{id}
+    </update>
+
+
+    <select id="checkOrders" resultMap="order" parameterType="String">
+        SELECT * FROM ordersolo WHERE  email = #{email} ORDER BY id DESC
+    </select>
+
+    <resultMap id="order" type="Order">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="email" property="email"/>
+        <result column="price" property="price"/>
+        <result column="number" property="number"/>
+        <result column="total" property="total"/>
+        <result column="info" property="info"/>
+        <result column="status" property="status"/>
+    </resultMap>
+
+</mapper>
